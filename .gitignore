@@ -1,0 +1,36 @@
+# Environments
+.venv/
+.env
+env/
+venv/
+ENV/
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Logs
+*.log
+hs_err_pid*.log
+replay_pid*.log
+
+# IDEs
+.idea/
+.vscode/
+
+# Build and Temp
+build/
+dist/
+*.egg-info/
+
+# Data
+*.csv
+!map_popup_sites.csv
+
+# Worktree Manager configs
+.worktree-ports.json

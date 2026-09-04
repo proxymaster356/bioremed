@@ -1,0 +1,21 @@
+# Runtime dependencies: NONE — the API server and prediction engine use only the
+# Python standard library (http.server, csv, json, statistics, math).
+#
+# Run:  python3 api/server.py
+#   or: api/.venv/bin/python api/server.py   (project virtualenv, Python 3.14)
+#
+# Optional (only to regenerate extracted_data/bardhaman_village_soil_normalized.csv
+# from the source .xlsx workbooks):
+# pandas
+# openpyxl
+#
+# Optional future training stack from the implementation plan:
+# numpy
+# scikit-learn
+# xgboost
+# torch
+# shap
+
+# Frontend build (React + Vite) requires Node.js 18+:
+#   cd frontend && npm install && npm run build   # emits ../static
+
