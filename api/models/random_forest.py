@@ -42,6 +42,15 @@ class SoilHealthModel:
         score = self.rf.predict(input_df)[0]
         score = round(max(0.0, min(100.0, score)), 1)
         
+        # Calculate prediction intervals across all trees (uncertainty)
+        all_tree_preds = []
+        for estimator in self.rf.estimators_:
+            # DecisionTreeRegressor expects 2D array
+            all_tree_preds.append(estimator.predict(input_df.values)[0])
+            
+        ci_lower = round(max(0.0, float(np.percentile(all_tree_preds, 5))), 1)
+        ci_upper = round(min(100.0, float(np.percentile(all_tree_preds, 95))), 1)
+        
         health_class = self._class_from_score(score)
         
         factors = []
@@ -52,6 +61,7 @@ class SoilHealthModel:
 
         return {
             "score": score,
+            "confidence_interval_90": [ci_lower, ci_upper],
             "class": health_class,
             "component_scores": {col: features.get(col, 0.0) for col in soil_cols},
             "top_factors": factors,
